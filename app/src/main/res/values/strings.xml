@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KotlinAndroidTalks</string>
+    <string name="toolbar_title">KotlinNotes</string>
+</resources>
