@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">KotlinAndroidTalks</string>
     <string name="toolbar_title">KotlinNotes</string>
+    <string name="delete_note_title">Are you sure?</string>
+    <string name="delete_note_message">You\'re about to delete your note</string>
+    <string name="delete_action">Delete</string>
+    <string name="cancel_action">Cancel</string>
 </resources>
