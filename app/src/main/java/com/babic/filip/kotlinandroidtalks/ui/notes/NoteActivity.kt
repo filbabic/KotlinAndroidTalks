@@ -4,19 +4,25 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import com.babic.filip.kotlinandroidtalks.App
 import com.babic.filip.kotlinandroidtalks.R
 import com.babic.filip.kotlinandroidtalks.common.extensions.addNegativeAction
 import com.babic.filip.kotlinandroidtalks.common.extensions.addPositiveAction
 import com.babic.filip.kotlinandroidtalks.common.extensions.createDialog
 import com.babic.filip.kotlinandroidtalks.common.extensions.display
+import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
+import com.babic.filip.kotlinandroidtalks.ui.edit.EditNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
 import kotlinx.android.synthetic.main.activity_notes.*
+import javax.inject.Inject
 
 /**
  * Created by Filip Babic @cobe
  */
 class NoteActivity : AppCompatActivity(), NoteInterface.View {
+
+    @Inject lateinit var presenter: NoteInterface.Presenter
 
     private val noteAdapter = NoteAdapter()
 
@@ -24,7 +30,14 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
 
+        injectDependencies()
         initNotes()
+        presenter.onSetup()
+    }
+
+    private fun injectDependencies() {
+        App.component().inject(this)
+        presenter.setView(this)
     }
 
     private fun initNotes() {
@@ -43,6 +56,8 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
                 .addPositiveAction(text = getString(R.string.delete_action), action = onDeleteClick)
                 .display()
     }
+
+    override fun startEdit(note: KotlinNote) = startActivity(EditNoteActivity.launchIntent(from = this, note = note))
 
     override fun navigateBack() = finish()
 }

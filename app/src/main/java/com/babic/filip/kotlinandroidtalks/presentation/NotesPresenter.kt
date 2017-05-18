@@ -26,19 +26,18 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
         }
     }
 
-    private fun onNoteLongClick(position: Int) {
-        if (position != -1) { //a valid position was clicked
-            notesView.showDeleteNoteDialog({ deleteNote(position) })
+    private fun onNoteLongClick(note: KotlinNote) {
+        if (note.position != -1) { //a valid position was clicked
+            notesView.showDeleteNoteDialog({ deleteNote(note) })
         }
     }
 
-    private fun deleteNote(position: Int) = notesView.deleteNote(position)
-
-    private fun onNoteClick(note: KotlinNote) {
-
+    private fun deleteNote(note: KotlinNote) {
+        notesView.deleteNote(note.position)
+        database.deleteNote(note)
     }
 
-    override fun onBackClick() {
-    }
+    private fun onNoteClick(note: KotlinNote) = notesView.startEdit(note)
 
+    override fun onBackClick() = notesView.navigateBack()
 }

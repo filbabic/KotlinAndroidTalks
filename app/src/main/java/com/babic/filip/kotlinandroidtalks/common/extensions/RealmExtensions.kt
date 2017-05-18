@@ -1,5 +1,7 @@
 package com.babic.filip.kotlinandroidtalks.common.extensions
 
+import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.RealmKotlinNote
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmQuery
@@ -29,3 +31,8 @@ private fun <T : RealmModel> Realm.remove(model: T) {
     delete(model::class.java)
     commitTransaction()
 }
+
+
+fun RealmKotlinNote.toNote() = KotlinNote(title, text, timestamp, position)
+
+fun KotlinNote.toRealmNote() = RealmKotlinNote(title, text, timestamp, -1)

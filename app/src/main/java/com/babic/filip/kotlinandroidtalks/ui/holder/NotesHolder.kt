@@ -10,7 +10,7 @@ import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
  */
 class NotesHolder(private val note: KotlinNote) : FlexibleNoteHolder {
 
-    private var longClick: ((Int) -> Unit)? = null
+    private var longClick: ((KotlinNote) -> Unit)? = null
     private var onClick: ((KotlinNote) -> Unit)? = null
 
     override fun getLayout() = R.layout.item_note
@@ -25,12 +25,12 @@ class NotesHolder(private val note: KotlinNote) : FlexibleNoteHolder {
         root.setOnClickListener { onClick?.invoke(note) }
 
         root.setOnLongClickListener {
-            longClick?.invoke(note.position)
+            longClick?.invoke(note)
             false
         }
     }
 
-    fun setOnLongClickAction(longClick: (Int) -> Unit) {
+    fun setOnLongClickAction(longClick: (KotlinNote) -> Unit) {
         this.longClick = longClick
     }
 
