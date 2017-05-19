@@ -1,7 +1,8 @@
 package com.babic.filip.kotlinandroidtalks.ui.notes
 
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
-import com.babic.filip.kotlinandroidtalks.presentation.BasePresenter
+import com.babic.filip.kotlinandroidtalks.ui.base.BasePresenter
+import com.babic.filip.kotlinandroidtalks.ui.base.BaseView
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
 
 /**
@@ -9,9 +10,7 @@ import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
  */
 interface NoteInterface {
 
-    interface View {
-
-        fun navigateBack() {}
+    interface View : BaseView {
 
         fun showDeleteNoteDialog(onDeleteClick: () -> Unit)
 
@@ -20,10 +19,14 @@ interface NoteInterface {
         fun deleteNote(position: Int)
 
         fun startEdit(note: KotlinNote)
+
+        fun startAddNote()
     }
 
     interface Presenter : BasePresenter<View> {
 
-        fun onSetup()
+        fun getNotes()
+
+        fun onAddNoteClick()
     }
 }

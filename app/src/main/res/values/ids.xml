@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="rootLayout" type="id" />
     <item name="notesList" type="id" />
     <item name="noteRoot" type="id" />
+    <item name="addNote" type="id" />
+
+    <item name="noteTitleInput" type="id" />
+    <item name="noteTextInput" type="id" />
+    <item name="doneAction" type="id" />
+
+    <item name="noteTitle" type="id" />
+    <item name="noteText" type="id" />
 </resources>

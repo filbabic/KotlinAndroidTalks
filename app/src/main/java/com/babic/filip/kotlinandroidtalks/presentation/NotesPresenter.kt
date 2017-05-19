@@ -16,7 +16,7 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
         this.notesView = view
     }
 
-    override fun onSetup() {
+    override fun getNotes() {
         val notes = database.getNotes()
 
         val holders = notes.map(::NotesHolder)
@@ -24,6 +24,8 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
             it.setOnClickAction { onNoteClick(it) }
             it.setOnLongClickAction { onNoteLongClick(it) }
         }
+
+        notesView.showNotes(holders)
     }
 
     private fun onNoteLongClick(note: KotlinNote) {
@@ -38,6 +40,8 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
     }
 
     private fun onNoteClick(note: KotlinNote) = notesView.startEdit(note)
+
+    override fun onAddNoteClick() = notesView.startAddNote()
 
     override fun onBackClick() = notesView.navigateBack()
 }

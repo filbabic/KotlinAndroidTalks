@@ -18,20 +18,34 @@
             android:textSize="20sp" />
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@id/notesList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@id/noteTitleInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/note_title" />
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@id/noteTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/note_text" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@id/addNote"
+        android:id="@id/doneAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add_note"
-        app:fabSize="normal"
-        app:layout_anchor="@id/notesList"
-        app:layout_anchorGravity="bottom|end" />
+        android:src="@drawable/ic_done_action"
+        app:fabSize="normal" />
 
 </android.support.design.widget.CoordinatorLayout>

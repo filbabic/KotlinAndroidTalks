@@ -11,7 +11,6 @@ import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
  */
 class EditNoteActivity : AppCompatActivity() {
 
-
     companion object {
 
         fun launchIntent(from: Context, note: KotlinNote): Intent {

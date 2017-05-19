@@ -12,6 +12,7 @@ import com.babic.filip.kotlinandroidtalks.common.extensions.createDialog
 import com.babic.filip.kotlinandroidtalks.common.extensions.display
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
+import com.babic.filip.kotlinandroidtalks.ui.add.AddNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.edit.EditNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
 import kotlinx.android.synthetic.main.activity_notes.*
@@ -29,15 +30,27 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notes)
-
         injectDependencies()
-        initNotes()
-        presenter.onSetup()
+        initUI()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.getNotes()
     }
 
     private fun injectDependencies() {
         App.component().inject(this)
         presenter.setView(this)
+    }
+
+    private fun initUI() {
+        initNotes()
+        initAddNote()
+    }
+
+    private fun initAddNote() {
+        addNote.setOnClickListener { presenter.onAddNoteClick() }
     }
 
     private fun initNotes() {
@@ -58,6 +71,8 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
     }
 
     override fun startEdit(note: KotlinNote) = startActivity(EditNoteActivity.launchIntent(from = this, note = note))
+
+    override fun startAddNote() = startActivity(AddNoteActivity.launchIntent(from = this))
 
     override fun navigateBack() = finish()
 }

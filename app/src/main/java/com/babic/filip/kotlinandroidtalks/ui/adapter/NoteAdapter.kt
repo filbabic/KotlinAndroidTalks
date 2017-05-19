@@ -8,8 +8,21 @@ import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
  */
 class NoteAdapter : FlexibleAdapter<FlexibleNoteHolder>() {
 
-    fun deleteNote(position : Int){
+    fun deleteNote(position: Int) {
         flexibleItems.removeAt(position)
+        resetPositions(flexibleItems)
+
         notifyDataSetChanged()
+    }
+
+    override fun setItems(dataSource: List<FlexibleNoteHolder>) {
+        resetPositions(dataSource)
+        super.setItems(dataSource)
+    }
+
+    private fun resetPositions(dataSource: List<FlexibleNoteHolder>) {
+        for (index in dataSource.indices) {
+            dataSource[index].setPosition(index)
+        }
     }
 }
