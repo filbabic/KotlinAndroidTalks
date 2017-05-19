@@ -9,10 +9,9 @@ import com.babic.filip.kotlinandroidtalks.R
 import com.babic.filip.kotlinandroidtalks.common.extensions.*
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
-import com.babic.filip.kotlinandroidtalks.ui.add.AddNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.custom.SimpleTextWatcher
-import com.babic.filip.kotlinandroidtalks.ui.edit.EditNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
+import com.babic.filip.kotlinandroidtalks.ui.note_input.NoteInputActivity
 import kotlinx.android.synthetic.main.activity_notes.*
 import javax.inject.Inject
 
@@ -81,9 +80,9 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
                 .display()
     }
 
-    override fun startEdit(note: KotlinNote) = startActivity(EditNoteActivity.launchIntent(from = this, note = note))
+    override fun startEdit(note: KotlinNote) = startActivity(NoteInputActivity.launchIntent(from = this, note = note))
 
-    override fun startAddNote() = startActivity(AddNoteActivity.launchIntent(from = this))
+    override fun startAddNote() = startActivity(NoteInputActivity.launchIntent(from = this))
 
     override fun navigateBack() = finish()
 }

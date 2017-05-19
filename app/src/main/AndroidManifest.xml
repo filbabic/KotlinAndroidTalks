@@ -18,6 +18,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.add.AddNoteActivity" />
+        <activity android:name=".ui.note_input.NoteInputActivity" />
     </application>
 </manifest>

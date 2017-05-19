@@ -3,7 +3,7 @@ package com.babic.filip.kotlinandroidtalks.di.module
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
 import com.babic.filip.kotlinandroidtalks.presentation.AddNotePresenter
 import com.babic.filip.kotlinandroidtalks.presentation.NotesPresenter
-import com.babic.filip.kotlinandroidtalks.ui.add.AddNoteInterface
+import com.babic.filip.kotlinandroidtalks.ui.note_input.AddNoteInterface
 import com.babic.filip.kotlinandroidtalks.ui.notes.NoteInterface
 import dagger.Module
 import dagger.Provides
