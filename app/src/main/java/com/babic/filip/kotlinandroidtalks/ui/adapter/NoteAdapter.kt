@@ -17,12 +17,11 @@ class NoteAdapter : FlexibleAdapter<FlexibleNoteHolder>() {
 
     override fun setItems(dataSource: List<FlexibleNoteHolder>) {
         resetPositions(dataSource)
-        super.setItems(dataSource)
+
+        flexibleItems.clear()
+        flexibleItems.addAll(dataSource)
+        notifyDataSetChanged()
     }
 
-    private fun resetPositions(dataSource: List<FlexibleNoteHolder>) {
-        for (index in dataSource.indices) {
-            dataSource[index].setPosition(index)
-        }
-    }
+    private fun resetPositions(dataSource: List<FlexibleNoteHolder>) = dataSource.forEachIndexed { index, item -> item.setPosition(index) }
 }

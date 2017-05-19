@@ -6,13 +6,11 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.babic.filip.kotlinandroidtalks.App
 import com.babic.filip.kotlinandroidtalks.R
-import com.babic.filip.kotlinandroidtalks.common.extensions.addNegativeAction
-import com.babic.filip.kotlinandroidtalks.common.extensions.addPositiveAction
-import com.babic.filip.kotlinandroidtalks.common.extensions.createDialog
-import com.babic.filip.kotlinandroidtalks.common.extensions.display
+import com.babic.filip.kotlinandroidtalks.common.extensions.*
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
 import com.babic.filip.kotlinandroidtalks.ui.add.AddNoteActivity
+import com.babic.filip.kotlinandroidtalks.ui.custom.SimpleTextWatcher
 import com.babic.filip.kotlinandroidtalks.ui.edit.EditNoteActivity
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
 import kotlinx.android.synthetic.main.activity_notes.*
@@ -46,11 +44,24 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
 
     private fun initUI() {
         initNotes()
-        initAddNote()
+
+        noteFilter.addTextChangedListener(SimpleTextWatcher { presenter.onFilterChanged(it) })
+
+        addNote.setOnClickListener { presenter.onAddNoteClick() }
+        filterAction.setOnClickListener { presenter.onFilterClick() }
     }
 
-    private fun initAddNote() {
-        addNote.setOnClickListener { presenter.onAddNoteClick() }
+    override fun showFilter() {
+        filterAction.animateImageChange(newImage = R.drawable.ic_cancel_action)
+        toolbarTitle.animateFadeOut()
+        noteFilter.animateFadeIn()
+    }
+
+    override fun hideFilter() {
+        filterAction.animateImageChange(newImage = R.drawable.ic_search_action)
+        toolbarTitle.animateFadeIn()
+        noteFilter.animateFadeOut()
+        noteFilter.text = null
     }
 
     private fun initNotes() {

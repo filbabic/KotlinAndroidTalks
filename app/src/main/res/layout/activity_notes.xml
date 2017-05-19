@@ -8,14 +8,38 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/toolbar_title"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@id/toolbarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/toolbar_title"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@id/noteFilter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/filter"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@id/filterAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_search_action" />
+        </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView

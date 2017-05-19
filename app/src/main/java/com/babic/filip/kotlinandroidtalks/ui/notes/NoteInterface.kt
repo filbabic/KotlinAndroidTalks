@@ -21,6 +21,10 @@ interface NoteInterface {
         fun startEdit(note: KotlinNote)
 
         fun startAddNote()
+
+        fun showFilter()
+
+        fun hideFilter()
     }
 
     interface Presenter : BasePresenter<View> {
@@ -28,5 +32,9 @@ interface NoteInterface {
         fun getNotes()
 
         fun onAddNoteClick()
+
+        fun onFilterClick()
+
+        fun onFilterChanged(filter: String)
     }
 }

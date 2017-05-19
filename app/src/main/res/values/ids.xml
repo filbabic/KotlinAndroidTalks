@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="toolbarTitle" type="id" />
     <item name="rootLayout" type="id" />
     <item name="notesList" type="id" />
     <item name="noteRoot" type="id" />
@@ -11,4 +12,7 @@
 
     <item name="noteTitle" type="id" />
     <item name="noteText" type="id" />
+
+    <item name="noteFilter" type="id" />
+    <item name="filterAction" type="id" />
 </resources>

@@ -6,3 +6,6 @@ package com.babic.filip.kotlinandroidtalks.common.constants
 
 const val KEY_TITLE = "title"
 const val KEY_NOTE = "note"
+
+
+const val ANIM_DURATION: Long = 500

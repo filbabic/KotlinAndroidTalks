@@ -12,6 +12,8 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
 
     private lateinit var notesView: NoteInterface.View
 
+    private var isFilterOpen = false
+
     override fun setView(view: NoteInterface.View) {
         this.notesView = view
     }
@@ -19,7 +21,18 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
     override fun getNotes() {
         val notes = database.getNotes()
 
+        showNotes(notes)
+    }
+
+    override fun onFilterChanged(filter: String) {
+        val filteredNotes = database.getNotes().filter { it.title.contains(filter, true) || it.text.contains(filter, true) } //ignore case = true
+
+        showNotes(filteredNotes)
+    }
+
+    private fun showNotes(notes: List<KotlinNote>) {
         val holders = notes.map(::NotesHolder)
+
         holders.forEach {
             it.setOnClickAction { onNoteClick(it) }
             it.setOnLongClickAction { onNoteLongClick(it) }
@@ -42,6 +55,17 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
     private fun onNoteClick(note: KotlinNote) = notesView.startEdit(note)
 
     override fun onAddNoteClick() = notesView.startAddNote()
+
+    override fun onFilterClick() {
+        if (isFilterOpen) {
+            notesView.hideFilter()
+            getNotes()
+        } else {
+            notesView.showFilter()
+        }
+
+        isFilterOpen = !isFilterOpen
+    }
 
     override fun onBackClick() = notesView.navigateBack()
 }
