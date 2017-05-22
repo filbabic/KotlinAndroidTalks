@@ -7,5 +7,5 @@ import com.babic.filip.flexibleadapter.FlexibleHolder
  */
 interface FlexibleNoteHolder : FlexibleHolder {
 
-    fun setPosition(position: Int)
+    fun getId() : String
 }

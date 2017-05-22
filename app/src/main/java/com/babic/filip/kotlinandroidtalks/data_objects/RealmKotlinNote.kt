@@ -7,7 +7,8 @@ import io.realm.annotations.PrimaryKey
  * Created by Filip Babic @cobe
  */
 
-open class RealmKotlinNote(var title: String = "",
+open class RealmKotlinNote(@PrimaryKey var id: String = "",
+                           var title: String = "",
                            var text: String = "",
-                           @PrimaryKey var timestamp: String = "",
+                           var timestamp: String = "",
                            var position: Int = -1) : RealmObject()

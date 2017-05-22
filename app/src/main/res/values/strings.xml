@@ -8,4 +8,5 @@
     <string name="note_title">Note title</string>
     <string name="note_text">Note text</string>
     <string name="filter">Filter</string>
+    <string name="save_note_error">Error saving a note!</string>
 </resources>

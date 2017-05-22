@@ -16,7 +16,7 @@ interface NoteInterface {
 
         fun showNotes(notes: List<FlexibleNoteHolder>)
 
-        fun deleteNote(position: Int)
+        fun deleteNote(position: String)
 
         fun startEdit(note: KotlinNote)
 

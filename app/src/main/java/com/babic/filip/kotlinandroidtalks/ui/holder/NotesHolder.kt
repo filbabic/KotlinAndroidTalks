@@ -48,9 +48,7 @@ class NotesHolder(private val note: KotlinNote) : FlexibleNoteHolder {
         this.onClick = onClick
     }
 
-    override fun setPosition(position: Int) {
-        note.position = position
-    }
+    override fun getId() = note.id
 
     override fun recycle() {}
 }

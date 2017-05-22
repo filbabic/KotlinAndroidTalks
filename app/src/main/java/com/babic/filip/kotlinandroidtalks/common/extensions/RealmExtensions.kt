@@ -5,6 +5,7 @@ import com.babic.filip.kotlinandroidtalks.data_objects.RealmKotlinNote
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.RealmQuery
+import io.realm.RealmResults
 
 /**
  * Created by Filip Babic @cobe
@@ -18,10 +19,28 @@ fun <T : RealmObject> Realm.saveObject(model: T) {
     commitTransaction()
 }
 
+fun <T : RealmObject> Realm.saveList(items: List<T>) {
+    beginTransaction()
+    copyToRealmOrUpdate(items)
+    commitTransaction()
+}
+
+fun <T : RealmObject> Realm.deleteList(query: Realm.() -> RealmQuery<T>) {
+    val items = query().findAll()
+
+    items?.let { removeAll(it) }
+}
+
 fun <T : RealmObject> Realm.deleteObject(query: Realm.() -> RealmQuery<T>) {
     val savedModel: T? = query().findFirst()
 
     savedModel?.let { remove(it) }
+}
+
+private fun <T : RealmObject> Realm.removeAll(models: RealmResults<T>) {
+    beginTransaction()
+    models.deleteAllFromRealm()
+    commitTransaction()
 }
 
 private fun <T : RealmObject> Realm.remove(model: T) {
@@ -30,6 +49,6 @@ private fun <T : RealmObject> Realm.remove(model: T) {
     commitTransaction()
 }
 
-fun RealmKotlinNote.toNote() = KotlinNote(title, text, timestamp, position)
+fun RealmKotlinNote.toNote() = KotlinNote(id, title, text)
 
-fun KotlinNote.toRealmNote() = RealmKotlinNote(title, text, timestamp, -1)
+fun KotlinNote.toRealmNote() = RealmKotlinNote(id, title, text)

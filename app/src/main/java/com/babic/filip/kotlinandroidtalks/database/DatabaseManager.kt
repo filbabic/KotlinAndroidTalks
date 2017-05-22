@@ -7,9 +7,11 @@ import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
  */
 interface DatabaseManager {
 
+    fun syncNotes(notes: List<KotlinNote>)
+
     fun getNotes(): List<KotlinNote>
 
     fun saveNote(note: KotlinNote)
 
-    fun deleteNote(note: KotlinNote)
+    fun deleteNote(id: String)
 }

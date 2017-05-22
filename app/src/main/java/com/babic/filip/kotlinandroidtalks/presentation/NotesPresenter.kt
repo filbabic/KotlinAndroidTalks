@@ -1,14 +1,16 @@
 package com.babic.filip.kotlinandroidtalks.presentation
 
+import com.babic.filip.kotlinandroidtalks.common.extensions.isValid
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
+import com.babic.filip.kotlinandroidtalks.firebase.FirebaseManager
 import com.babic.filip.kotlinandroidtalks.ui.holder.NotesHolder
 import com.babic.filip.kotlinandroidtalks.ui.notes.NoteInterface
 
 /**
  * Created by Filip Babic @cobe
  */
-class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Presenter {
+class NotesPresenter(private val database: DatabaseManager, private val manager: FirebaseManager) : NoteInterface.Presenter {
 
     private lateinit var notesView: NoteInterface.View
 
@@ -18,8 +20,10 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
         this.notesView = view
     }
 
-    override fun getNotes() {
-        val notes = database.getNotes()
+    override fun getNotes() = manager.getNotes({ syncNotes(it) })
+
+    private fun syncNotes(notes: List<KotlinNote>) {
+        database.syncNotes(notes)
 
         showNotes(notes)
     }
@@ -42,14 +46,18 @@ class NotesPresenter(private val database: DatabaseManager) : NoteInterface.Pres
     }
 
     private fun onNoteLongClick(note: KotlinNote) {
-        if (note.position != -1) { //a valid position was clicked
+        if (note.id.isValid()) { //a valid position was clicked
             notesView.showDeleteNoteDialog({ deleteNote(note) })
         }
     }
 
-    private fun deleteNote(note: KotlinNote) {
-        notesView.deleteNote(note.position)
-        database.deleteNote(note)
+    private fun deleteNote(note: KotlinNote) = manager.deleteNote(note.id, { result, id -> onDeleteNoteResult(result, id) })
+
+    private fun onDeleteNoteResult(isSuccessful: Boolean, id: String) {
+        if (isSuccessful) {
+            notesView.deleteNote(id)
+            database.deleteNote(id)
+        }
     }
 
     private fun onNoteClick(note: KotlinNote) = notesView.startEdit(note)

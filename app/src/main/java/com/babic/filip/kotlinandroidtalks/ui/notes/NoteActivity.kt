@@ -71,7 +71,7 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
 
     override fun showNotes(notes: List<FlexibleNoteHolder>) = noteAdapter.setItems(notes)
 
-    override fun deleteNote(position: Int) = noteAdapter.deleteNote(position)
+    override fun deleteNote(position: String) = noteAdapter.deleteNote(position)
 
     override fun showDeleteNoteDialog(onDeleteClick: () -> Unit) {
         createDialog(title = getString(R.string.delete_note_title), message = getString(R.string.delete_note_message))

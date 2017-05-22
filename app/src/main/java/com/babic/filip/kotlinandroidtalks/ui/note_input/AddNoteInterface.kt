@@ -14,6 +14,8 @@ interface AddNoteInterface {
         fun showTitle(title: String)
 
         fun showText(text: String)
+
+        fun showSaveNoteError()
     }
 
     interface Presenter : BasePresenter<View> {

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "152821961238",
+    "firebase_url": "https://kotlinandroidtalks.firebaseio.com",
+    "project_id": "kotlinandroidtalks",
+    "storage_bucket": "kotlinandroidtalks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152821961238:android:e1c06cab0fc1c375",
+        "android_client_info": {
+          "package_name": "com.babic.filip.kotlinandroidtalks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152821961238-p7tcq60b1ipbtivmgjrcq1uam6djarfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babic.filip.kotlinandroidtalks",
+            "certificate_hash": "4d461ea94702e928eb059e66f6a4c8a02559475a"
+          }
+        },
+        {
+          "client_id": "152821961238-2r02v3lg6eggm3qr8krolb9j49ubcpmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjyI_8ZevNVbQ7JDHxeYLOMpJyf2OvHwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152821961238-2r02v3lg6eggm3qr8krolb9j49ubcpmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

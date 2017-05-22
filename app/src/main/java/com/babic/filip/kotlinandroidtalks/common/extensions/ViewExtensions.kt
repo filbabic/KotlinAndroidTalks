@@ -20,8 +20,7 @@ fun View.animateFadeOut(duration: Long = ANIM_DURATION, setGone: Boolean = true,
             .withEndAction {
                 endAction()
                 visibility = if (setGone) View.GONE else View.VISIBLE
-            }
-            .start()
+            }.start()
 }
 
 fun View.animateFadeIn(duration: Long = ANIM_DURATION) {

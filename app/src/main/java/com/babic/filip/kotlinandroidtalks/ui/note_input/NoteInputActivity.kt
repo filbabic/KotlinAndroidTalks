@@ -8,6 +8,7 @@ import com.babic.filip.kotlinandroidtalks.App
 import com.babic.filip.kotlinandroidtalks.R
 import com.babic.filip.kotlinandroidtalks.common.constants.KEY_NOTE
 import com.babic.filip.kotlinandroidtalks.common.extensions.input
+import com.babic.filip.kotlinandroidtalks.common.extensions.toast
 import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
 import kotlinx.android.synthetic.main.activity_note_input.*
 import javax.inject.Inject
@@ -45,6 +46,8 @@ class NoteInputActivity : AppCompatActivity(), AddNoteInterface.View {
 
     override fun showText(text: String) = noteTextInput.setText(text)
     override fun showTitle(title: String) = noteTitleInput.setText(title)
+
+    override fun showSaveNoteError() = toast(message = getString(R.string.save_note_error))
 
     override fun navigateBack() = finish()
 }
