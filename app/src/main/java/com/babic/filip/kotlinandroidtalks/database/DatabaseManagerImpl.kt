@@ -2,8 +2,8 @@ package com.babic.filip.kotlinandroidtalks.database
 
 import com.babic.filip.kotlinandroidtalks.common.constants.KEY_ID
 import com.babic.filip.kotlinandroidtalks.common.extensions.*
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
-import com.babic.filip.kotlinandroidtalks.data_objects.RealmKotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
+import com.babic.filip.kotlinandroidtalks.data_objects.RealmNote
 import io.realm.Realm
 
 /**
@@ -11,15 +11,14 @@ import io.realm.Realm
  */
 class DatabaseManagerImpl(private val realm: Realm) : DatabaseManager {
 
-    override fun syncNotes(notes: List<KotlinNote>) {
-        realm.deleteList { where(RealmKotlinNote::class.java) }
-
-        realm.saveList(notes.map { it.toRealmNote() })
+    override fun syncNotes(notes: List<Note>) = with(realm) {
+        deleteList { where(RealmNote::class.java) }
+        saveList(notes.map { it.toRealmNote() })
     }
 
-    override fun getNotes(): List<KotlinNote> = realm.getCopies { where(RealmKotlinNote::class.java) }.map { it.toNote() }
+    override fun getNotes(): List<Note> = realm.getCopies { where(RealmNote::class.java) }.map { it.toNote() }
 
-    override fun deleteNote(id: String) = realm.deleteObject { where(RealmKotlinNote::class.java).equalTo(KEY_ID, id) }
+    override fun deleteNote(id: String) = realm.deleteObject { where(RealmNote::class.java).equalTo(KEY_ID, id) }
 
-    override fun saveNote(note: KotlinNote) = realm.saveObject(note.toRealmNote())
+    override fun saveNote(note: Note) = with(note) { realm.saveObject(toRealmNote()) }
 }

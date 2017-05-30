@@ -6,8 +6,9 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.babic.filip.kotlinandroidtalks.App
 import com.babic.filip.kotlinandroidtalks.R
+import com.babic.filip.kotlinandroidtalks.common.constants.KEY_NOTE
 import com.babic.filip.kotlinandroidtalks.common.extensions.*
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
 import com.babic.filip.kotlinandroidtalks.ui.custom.SimpleTextWatcher
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
@@ -37,7 +38,7 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
     }
 
     private fun injectDependencies() {
-        App.component().inject(this)
+        App.component.inject(this)
         presenter.setView(this)
     }
 
@@ -80,9 +81,9 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
                 .display()
     }
 
-    override fun startEdit(note: KotlinNote) = startActivity(NoteInputActivity.launchIntent(from = this, note = note))
+    override fun startEdit(note: Note) = startNewActivity<NoteInputActivity> { putExtra(KEY_NOTE, note) }
 
-    override fun startAddNote() = startActivity(NoteInputActivity.launchIntent(from = this))
+    override fun startAddNote() = startNewActivity<NoteInputActivity>()
 
     override fun navigateBack() = finish()
 }

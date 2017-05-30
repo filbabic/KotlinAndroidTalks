@@ -4,15 +4,15 @@ import android.view.View
 import android.widget.TextView
 import com.babic.filip.kotlinandroidtalks.R
 import com.babic.filip.kotlinandroidtalks.common.extensions.find
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
 
 /**
  * Created by Filip Babic @cobe
  */
-class NotesHolder(private val note: KotlinNote) : FlexibleNoteHolder {
+class NotesHolder(private val note: Note) : FlexibleNoteHolder {
 
-    private var longClick: ((KotlinNote) -> Unit)? = null
-    private var onClick: ((KotlinNote) -> Unit)? = null
+    private var longClick: ((Note) -> Unit)? = null
+    private var onClick: ((Note) -> Unit)? = null
 
     override fun getLayout() = R.layout.item_note
 
@@ -40,11 +40,11 @@ class NotesHolder(private val note: KotlinNote) : FlexibleNoteHolder {
         }
     }
 
-    fun setOnLongClickAction(longClick: (KotlinNote) -> Unit) {
+    fun setOnLongClickAction(longClick: (Note) -> Unit) {
         this.longClick = longClick
     }
 
-    fun setOnClickAction(onClick: (KotlinNote) -> Unit) {
+    fun setOnClickAction(onClick: (Note) -> Unit) {
         this.onClick = onClick
     }
 

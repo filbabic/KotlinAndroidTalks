@@ -1,7 +1,7 @@
 package com.babic.filip.kotlinandroidtalks.presentation
 
 import com.babic.filip.kotlinandroidtalks.common.extensions.isValid
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
 import com.babic.filip.kotlinandroidtalks.firebase.FirebaseManager
 import com.babic.filip.kotlinandroidtalks.ui.holder.NotesHolder
@@ -20,9 +20,11 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         this.notesView = view
     }
 
-    override fun getNotes() = manager.getNotes({ syncNotes(it) })
+    override fun getNotes() {
+        manager.getNotes({ syncNotes(it) })
+    }
 
-    private fun syncNotes(notes: List<KotlinNote>) {
+    private fun syncNotes(notes: List<Note>) {
         database.syncNotes(notes)
 
         showNotes(notes)
@@ -34,7 +36,7 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         showNotes(filteredNotes)
     }
 
-    private fun showNotes(notes: List<KotlinNote>) {
+    private fun showNotes(notes: List<Note>) {
         val holders = notes.map(::NotesHolder)
 
         holders.forEach {
@@ -45,13 +47,13 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         notesView.showNotes(holders)
     }
 
-    private fun onNoteLongClick(note: KotlinNote) {
-        if (note.id.isValid()) { //a valid position was clicked
+    private fun onNoteLongClick(note: Note) {
+        if (note.id.isValid()) { //a valid note was clicked
             notesView.showDeleteNoteDialog({ deleteNote(note) })
         }
     }
 
-    private fun deleteNote(note: KotlinNote) = manager.deleteNote(note.id, { result, id -> onDeleteNoteResult(result, id) })
+    private fun deleteNote(note: Note) = manager.deleteNote(note.id, { result, id -> onDeleteNoteResult(result, id) })
 
     private fun onDeleteNoteResult(isSuccessful: Boolean, id: String) {
         if (isSuccessful) {
@@ -60,7 +62,7 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         }
     }
 
-    private fun onNoteClick(note: KotlinNote) = notesView.startEdit(note)
+    private fun onNoteClick(note: Note) = notesView.startEdit(note)
 
     override fun onAddNoteClick() = notesView.startAddNote()
 

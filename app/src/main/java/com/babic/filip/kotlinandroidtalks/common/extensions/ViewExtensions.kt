@@ -12,7 +12,8 @@ import com.babic.filip.kotlinandroidtalks.common.constants.ANIM_DURATION
 
 inline fun <reified T : View> View.find(@IdRes id: Int): T = findViewById(id) as T
 
-fun TextView.input() = text.toString()
+val TextView.input: String
+    get() = text.toString()
 
 fun View.animateFadeOut(duration: Long = ANIM_DURATION, setGone: Boolean = true, endAction: () -> Unit = {}) {
     animate().alpha(0f)

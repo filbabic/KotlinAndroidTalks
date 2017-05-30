@@ -12,20 +12,20 @@ class App : Application() {
 
     companion object {
 
-        private lateinit var component: AppComponent
-        private lateinit var app: App
+        lateinit var app: App
+            private set
 
-        fun component() = component
-        fun app() = app
+        val component: AppComponent by lazy {
+            DaggerAppComponent.builder()
+                    .appModule(AppModule(app))
+                    .build()
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
 
         app = this
-        component = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
 
         component.inject(this)
     }

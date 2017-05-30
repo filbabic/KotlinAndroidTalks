@@ -7,5 +7,4 @@ package com.babic.filip.kotlinandroidtalks.common.constants
 const val KEY_ID = "id"
 const val KEY_NOTE = "note"
 
-
 const val ANIM_DURATION: Long = 500

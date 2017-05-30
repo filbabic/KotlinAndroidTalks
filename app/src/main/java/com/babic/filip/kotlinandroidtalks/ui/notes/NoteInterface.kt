@@ -1,6 +1,6 @@
 package com.babic.filip.kotlinandroidtalks.ui.notes
 
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.ui.base.BasePresenter
 import com.babic.filip.kotlinandroidtalks.ui.base.BaseView
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
@@ -18,7 +18,7 @@ interface NoteInterface {
 
         fun deleteNote(position: String)
 
-        fun startEdit(note: KotlinNote)
+        fun startEdit(note: Note)
 
         fun startAddNote()
 

@@ -1,6 +1,6 @@
 package com.babic.filip.kotlinandroidtalks.ui.note_input
 
-import com.babic.filip.kotlinandroidtalks.data_objects.KotlinNote
+import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.ui.base.BasePresenter
 import com.babic.filip.kotlinandroidtalks.ui.base.BaseView
 
@@ -22,6 +22,6 @@ interface AddNoteInterface {
 
         fun onDoneClick(title: String, text: String)
 
-        fun checkNote(note: KotlinNote)
+        fun checkNote(note: Note)
     }
 }
