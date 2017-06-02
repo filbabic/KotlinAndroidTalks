@@ -6,13 +6,12 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.babic.filip.kotlinandroidtalks.App
 import com.babic.filip.kotlinandroidtalks.R
-import com.babic.filip.kotlinandroidtalks.common.constants.KEY_NOTE
 import com.babic.filip.kotlinandroidtalks.common.extensions.*
+import com.babic.filip.kotlinandroidtalks.common.helper_functions.*
 import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.ui.adapter.NoteAdapter
 import com.babic.filip.kotlinandroidtalks.ui.custom.SimpleTextWatcher
 import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
-import com.babic.filip.kotlinandroidtalks.ui.note_input.NoteInputActivity
 import kotlinx.android.synthetic.main.activity_notes.*
 import javax.inject.Inject
 
@@ -58,6 +57,8 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
     }
 
     override fun hideFilter() {
+        hideKeyboard(from = currentFocus)
+
         filterAction.animateImageChange(newImage = R.drawable.ic_search_action)
         toolbarTitle.animateFadeIn()
         noteFilter.animateFadeOut()
@@ -70,6 +71,8 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
         notesList.layoutManager = LinearLayoutManager(this)
     }
 
+    override fun showNoteCategoryPicker() = addNote.animateToCategoryPicker(categoryPicker, root = rootLayout, onPickAction = { presenter.onCategoryPicked(it) })
+
     override fun showNotes(notes: List<FlexibleNoteHolder>) = noteAdapter.setItems(notes)
 
     override fun deleteNote(position: String) = noteAdapter.deleteNote(position)
@@ -81,9 +84,10 @@ class NoteActivity : AppCompatActivity(), NoteInterface.View {
                 .display()
     }
 
-    override fun startEdit(note: Note) = startNewActivity<NoteInputActivity> { putExtra(KEY_NOTE, note) }
-
-    override fun startAddNote() = startNewActivity<NoteInputActivity>()
+    override fun showBillsNoteDialog(note: Note) = showBillsDialog(fragmentManager, note)
+    override fun showRegularNoteDialog(note: Note) = showNoteDialog(fragmentManager, note)
+    override fun showShoppingNoteDialog(note: Note) = showShoppingDialog(fragmentManager, note)
+    override fun showWorkNoteDialog(note: Note) = showWorkDialog(fragmentManager, note)
 
     override fun navigateBack() = finish()
 }

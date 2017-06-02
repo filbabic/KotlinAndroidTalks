@@ -1,6 +1,7 @@
 package com.babic.filip.kotlinandroidtalks
 
 import android.app.Application
+import android.support.multidex.MultiDex
 import com.babic.filip.kotlinandroidtalks.di.component.AppComponent
 import com.babic.filip.kotlinandroidtalks.di.component.DaggerAppComponent
 import com.babic.filip.kotlinandroidtalks.di.module.AppModule
@@ -24,6 +25,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this)
 
         app = this
 

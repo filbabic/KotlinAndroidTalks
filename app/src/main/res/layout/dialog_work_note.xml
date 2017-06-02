@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_note_input" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@id/colleagueNameInput"
+        android:hint="@string/colleague_name_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp" />
+
+    <Button
+        android:id="@id/doneAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_note_action" />
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.babic.filip.kotlinandroidtalks.presentation
 
+import com.babic.filip.kotlinandroidtalks.common.constants.Category
+import com.babic.filip.kotlinandroidtalks.common.extensions.emptyCategoryFromName
 import com.babic.filip.kotlinandroidtalks.common.extensions.isValid
 import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
@@ -20,9 +22,7 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         this.notesView = view
     }
 
-    override fun getNotes() {
-        manager.getNotes({ syncNotes(it) })
-    }
+    override fun getNotes() = manager.getNotes({ syncNotes(it) })
 
     private fun syncNotes(notes: List<Note>) {
         database.syncNotes(notes)
@@ -62,9 +62,20 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
         }
     }
 
-    private fun onNoteClick(note: Note) = notesView.startEdit(note)
+    override fun onAddNoteClick() = notesView.showNoteCategoryPicker()
 
-    override fun onAddNoteClick() = notesView.startAddNote()
+    override fun onCategoryPicked(category: String) {
+        if (category.isValid()) {
+            onNoteClick(Note(category = emptyCategoryFromName(category)))
+        }
+    }
+
+    private fun onNoteClick(note: Note) = when (note.category) {
+        is Category.None -> notesView.showRegularNoteDialog(note)
+        is Category.Work -> notesView.showWorkNoteDialog(note)
+        is Category.Bills -> notesView.showBillsNoteDialog(note)
+        is Category.Shopping -> notesView.showShoppingNoteDialog(note)
+    }
 
     override fun onFilterClick() {
         if (isFilterOpen) {

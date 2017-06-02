@@ -1,8 +1,8 @@
 package com.babic.filip.kotlinandroidtalks.common.extensions
 
-import android.app.Activity
+import android.app.Fragment
 import android.content.Context
-import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 
 /**
@@ -12,13 +12,13 @@ import android.widget.Toast
 
 fun Context.toast(duration: Int = Toast.LENGTH_SHORT, message: String) = Toast.makeText(this, message, duration).show()
 
-inline fun <reified T : Activity> Context.startNewActivity(addExtras: Intent.() -> Unit) {
-    val intent = Intent(this, T::class.java)
-    intent.addExtras()
-    startActivity(intent)
+fun Fragment.toast(duration: Int = Toast.LENGTH_SHORT, message: String) = activity.toast(duration, message)
+
+inline fun Fragment.addArguments(action: Bundle.() -> Unit) {
+    val bundle = Bundle()
+    bundle.action()
+
+    arguments = bundle
 }
 
-inline fun <reified T : Activity> Context.startNewActivity() {
-    val intent = Intent(this, T::class.java)
-    startActivity(intent)
-}
+fun Context.dpToPixels(dp: Int): Int = (dp * resources.displayMetrics.density).toInt()

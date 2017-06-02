@@ -6,8 +6,8 @@
     <item name="noteRoot" type="id" />
     <item name="addNote" type="id" />
 
-    <item name="noteTitleInput" type="id" />
-    <item name="noteTextInput" type="id" />
+    <item name="titleInput" type="id" />
+    <item name="textInput" type="id" />
     <item name="doneAction" type="id" />
 
     <item name="noteTitle" type="id" />
@@ -15,4 +15,13 @@
 
     <item name="noteFilter" type="id" />
     <item name="filterAction" type="id" />
+
+    <item name="billInput" type="id" />
+    <item name="colleagueNameInput" type="id" />
+
+    <item name="categoryPicker" type="id" />
+    <item name="workOption" type="id" />
+    <item name="regularOption" type="id" />
+    <item name="billsOption" type="id" />
+    <item name="shoppingOption" type="id" />
 </resources>

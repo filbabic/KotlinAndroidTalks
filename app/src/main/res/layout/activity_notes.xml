@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -48,6 +49,49 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <com.imangazaliev.circlemenu.CircleMenu
+        android:id="@id/categoryPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:translationZ="8dp"
+        android:visibility="invisible"
+        app:select_animation_duration="300">
+
+        <com.imangazaliev.circlemenu.CircleMenuButton
+            android:id="@id/workOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="@string/work_action"
+            app:colorNormal="@color/light_gray"
+            app:icon="@drawable/ic_work_note" />
+
+        <com.imangazaliev.circlemenu.CircleMenuButton
+            android:id="@id/billsOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="@string/bills_action"
+            app:colorNormal="@color/light_green"
+            app:icon="@drawable/ic_bills_note" />
+
+        <com.imangazaliev.circlemenu.CircleMenuButton
+            android:id="@id/shoppingOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="@string/shopping_action"
+            app:colorNormal="@color/light_orange"
+            app:icon="@drawable/ic_shopping_note" />
+
+        <com.imangazaliev.circlemenu.CircleMenuButton
+            android:id="@id/regularOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="@string/regular_action"
+            app:colorNormal="@color/light_blue"
+            app:icon="@drawable/ic_regular_note" />
+
+    </com.imangazaliev.circlemenu.CircleMenu>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@id/addNote"
         android:layout_width="wrap_content"
@@ -57,5 +101,4 @@
         app:fabSize="normal"
         app:layout_anchor="@id/notesList"
         app:layout_anchorGravity="bottom|end" />
-
 </android.support.design.widget.CoordinatorLayout>

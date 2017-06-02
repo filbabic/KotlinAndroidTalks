@@ -9,4 +9,13 @@
     <string name="note_text">Note text</string>
     <string name="filter">Filter</string>
     <string name="save_note_error">Error saving a note!</string>
+    <string name="save_note_action">Save</string>
+    <string name="bill_amount_hint">Bill amount</string>
+    <string name="colleague_name_hint">Colleague name</string>
+
+    <string name="work_action">Work</string>
+    <string name="bills_action">Bills</string>
+    <string name="shopping_action">Shopping</string>
+    <string name="regular_action">None</string>
+
 </resources>

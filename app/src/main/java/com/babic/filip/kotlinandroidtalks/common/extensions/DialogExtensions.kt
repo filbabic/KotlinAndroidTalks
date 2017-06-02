@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog
  * Created by Filip Babic @cobe
  */
 
-
 fun Context.createDialog(title: String, message: String): AlertDialog.Builder {
     val builder = AlertDialog.Builder(this)
     builder.setTitle(title)

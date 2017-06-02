@@ -18,13 +18,19 @@ interface NoteInterface {
 
         fun deleteNote(position: String)
 
-        fun startEdit(note: Note)
-
-        fun startAddNote()
+        fun showNoteCategoryPicker()
 
         fun showFilter()
 
         fun hideFilter()
+
+        fun showWorkNoteDialog(note: Note)
+
+        fun showRegularNoteDialog(note: Note)
+
+        fun showBillsNoteDialog(note: Note)
+
+        fun showShoppingNoteDialog(note: Note)
     }
 
     interface Presenter : BasePresenter<View> {
@@ -36,5 +42,7 @@ interface NoteInterface {
         fun onFilterClick()
 
         fun onFilterChanged(filter: String)
+
+        fun onCategoryPicked(category: String)
     }
 }
