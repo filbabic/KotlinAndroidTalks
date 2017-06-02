@@ -18,7 +18,7 @@ class FirebaseManagerImpl(private val database: FirebaseDatabase) : FirebaseMana
     override fun getNotes(completion: (List<Note>) -> Unit) {
         val notes = database.reference
 
-        notes.addListenerForSingleValueEvent(object : ValueEventListener {
+        notes.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError?) = completion(listOf())
 
             override fun onDataChange(snapshot: DataSnapshot?) {

@@ -34,7 +34,7 @@ class WorkNoteDialog : BaseNoteInputDialog(), WorkNoteInterface.View {
     override fun initUI() {
         doneAction.setOnClickListener {
             val note = Note(title = titleInput.input, text = textInput.input, category = Category.Work(colleagueNameInput.input))
-            presenter.checkNoteData(noteInput = note)
+            presenter.onDoneClick(noteInput = note)
         }
     }
 

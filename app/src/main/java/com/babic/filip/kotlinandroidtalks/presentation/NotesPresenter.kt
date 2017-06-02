@@ -3,10 +3,10 @@ package com.babic.filip.kotlinandroidtalks.presentation
 import com.babic.filip.kotlinandroidtalks.common.constants.Category
 import com.babic.filip.kotlinandroidtalks.common.extensions.emptyCategoryFromName
 import com.babic.filip.kotlinandroidtalks.common.extensions.isValid
+import com.babic.filip.kotlinandroidtalks.common.extensions.toHolder
 import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
 import com.babic.filip.kotlinandroidtalks.firebase.FirebaseManager
-import com.babic.filip.kotlinandroidtalks.ui.holder.NotesHolder
 import com.babic.filip.kotlinandroidtalks.ui.notes.NoteInterface
 
 /**
@@ -37,7 +37,7 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
     }
 
     private fun showNotes(notes: List<Note>) {
-        val holders = notes.map(::NotesHolder)
+        val holders = notes.map { it.toHolder() }
 
         holders.forEach {
             it.setOnClickAction { onNoteClick(it) }
@@ -66,7 +66,7 @@ class NotesPresenter(private val database: DatabaseManager, private val manager:
 
     override fun onCategoryPicked(category: String) {
         if (category.isValid()) {
-            onNoteClick(Note(category = emptyCategoryFromName(category)))
+            onNoteClick(Note(category = emptyCategoryFromName(category), categoryName = category))
         }
     }
 

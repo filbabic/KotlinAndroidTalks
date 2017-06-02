@@ -9,10 +9,10 @@ import com.babic.filip.kotlinandroidtalks.data_objects.Note
 /**
  * Created by Filip Babic @cobe
  */
-class NotesHolder(private val note: Note) : FlexibleNoteHolder {
+class RegularNoteHolder(private val note: Note) : FlexibleNoteHolder {
 
-    private var longClick: ((Note) -> Unit)? = null
-    private var onClick: ((Note) -> Unit)? = null
+    override var longClick: ((Note) -> Unit)? = null
+    override var onClick: ((Note) -> Unit)? = null
 
     override fun getLayout() = R.layout.item_note
 
@@ -38,14 +38,6 @@ class NotesHolder(private val note: Note) : FlexibleNoteHolder {
             longClick?.invoke(note)
             false
         }
-    }
-
-    fun setOnLongClickAction(longClick: (Note) -> Unit) {
-        this.longClick = longClick
-    }
-
-    fun setOnClickAction(onClick: (Note) -> Unit) {
-        this.onClick = onClick
     }
 
     override fun getId() = note.id

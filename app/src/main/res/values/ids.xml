@@ -13,10 +13,18 @@
     <item name="noteTitle" type="id" />
     <item name="noteText" type="id" />
 
+    <item name="billAmount" type="id" />
+    <item name="billDeadline" type="id" />
+
+    <item name="colleagueName" type="id" />
+
+    <item name="addShoppingItem" type="id" />
+    <item name="shoppingInput" type="id" />
     <item name="noteFilter" type="id" />
     <item name="filterAction" type="id" />
 
     <item name="billInput" type="id" />
+    <item name="deadlineInput" type="id" />
     <item name="colleagueNameInput" type="id" />
 
     <item name="categoryPicker" type="id" />

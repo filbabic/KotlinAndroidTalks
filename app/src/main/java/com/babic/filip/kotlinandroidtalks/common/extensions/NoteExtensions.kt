@@ -7,6 +7,10 @@ import com.babic.filip.kotlinandroidtalks.common.constants.Category
 import com.babic.filip.kotlinandroidtalks.data_objects.FirebaseNote
 import com.babic.filip.kotlinandroidtalks.data_objects.Note
 import com.babic.filip.kotlinandroidtalks.data_objects.RealmNote
+import com.babic.filip.kotlinandroidtalks.ui.holder.BillNoteHolder
+import com.babic.filip.kotlinandroidtalks.ui.holder.FlexibleNoteHolder
+import com.babic.filip.kotlinandroidtalks.ui.holder.RegularNoteHolder
+import com.babic.filip.kotlinandroidtalks.ui.holder.WorkNoteHolder
 import com.google.gson.Gson
 
 /**
@@ -33,4 +37,11 @@ fun emptyCategoryFromName(name: String): Category = when (name) {
     CATEGORY_SHOPPING -> Category.Shopping()
     CATEGORY_WORK -> Category.Work()
     else -> Category.None()
+}
+
+fun Note.toHolder(): FlexibleNoteHolder = when (this.category) {
+    is Category.None -> RegularNoteHolder(this)
+    is Category.Work -> WorkNoteHolder(this)
+    is Category.Shopping -> TODO()
+    is Category.Bills -> BillNoteHolder(this)
 }

@@ -23,6 +23,7 @@ class BillNotePresenter(databaseManager: DatabaseManager, firebaseManager: Fireb
 
         if (noteInput.isValidBody() && category is Category.Bills) {
             noteView.showBillAmount(category.amount.toString())
+            noteView.showDeadline(category.deadline)
         }
     }
 }

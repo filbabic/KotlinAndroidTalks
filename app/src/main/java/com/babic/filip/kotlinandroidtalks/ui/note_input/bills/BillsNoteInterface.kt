@@ -10,6 +10,8 @@ interface BillsNoteInterface {
     interface View : NoteInputInterface.View {
 
         fun showBillAmount(amount: String)
+
+        fun showDeadline(deadline : String)
     }
 
     interface Presenter : NoteInputInterface.Presenter<View>

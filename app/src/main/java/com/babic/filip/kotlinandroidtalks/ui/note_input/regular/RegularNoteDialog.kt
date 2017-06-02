@@ -31,9 +31,7 @@ class RegularNoteDialog : BaseNoteInputDialog(), NoteInputInterface.View {
         checkData()
     }
 
-    override fun initUI() {
-        doneAction.setOnClickListener { presenter.checkNoteData(noteInput = Note(title = titleInput.input, text = textInput.input)) }
-    }
+    override fun initUI() = doneAction.setOnClickListener { presenter.onDoneClick(noteInput = Note(title = titleInput.input, text = textInput.input)) }
 
     override fun injectDependencies() {
         App.component.inject(this)

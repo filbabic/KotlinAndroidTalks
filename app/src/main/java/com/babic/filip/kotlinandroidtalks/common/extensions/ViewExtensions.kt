@@ -2,6 +2,7 @@ package com.babic.filip.kotlinandroidtalks.common.extensions
 
 import android.support.annotation.IdRes
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import com.babic.filip.kotlinandroidtalks.common.constants.ANIM_DURATION
@@ -53,6 +54,7 @@ fun View.animateToCategoryPicker(categoryPicker: CircleMenu, duration: Long = AN
     val translation = animate()
             .translationX(relativeX)
             .translationY(relativeY)
+            .setInterpolator(AccelerateDecelerateInterpolator())
             .setDuration(duration)
 
     translation.withEndAction {
@@ -66,6 +68,7 @@ fun View.animateToCategoryPicker(categoryPicker: CircleMenu, duration: Long = AN
     val reverseTranslation: (String) -> Unit = {
         animate().translationX((-relativeX))
                 .translationY((-relativeY))
+                .setInterpolator(AccelerateDecelerateInterpolator())
                 .setDuration(duration)
                 .withEndAction {
                     setViewBottom(this)

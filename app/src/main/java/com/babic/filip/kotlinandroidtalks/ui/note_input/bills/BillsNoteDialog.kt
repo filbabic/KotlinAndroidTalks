@@ -33,7 +33,7 @@ class BillsNoteDialog : BaseNoteInputDialog(), BillsNoteInterface.View {
 
     override fun initUI() {
         doneAction.setOnClickListener {
-            val note = Note(title = titleInput.input, text = textInput.input, category = Category.Bills(billInput.input.toFloat()))
+            val note = Note(title = titleInput.input, text = textInput.input, category = Category.Bills(billInput.input.toFloat(), deadlineInput.input))
             presenter.onDoneClick(noteInput = note)
         }
     }
@@ -50,5 +50,9 @@ class BillsNoteDialog : BaseNoteInputDialog(), BillsNoteInterface.View {
 
     override fun showBillAmount(amount: String) {
         billInput.input = amount
+    }
+
+    override fun showDeadline(deadline: String) {
+        deadlineInput.input = deadline
     }
 }

@@ -2,12 +2,10 @@ package com.babic.filip.kotlinandroidtalks.di.module
 
 import com.babic.filip.kotlinandroidtalks.database.DatabaseManager
 import com.babic.filip.kotlinandroidtalks.firebase.FirebaseManager
-import com.babic.filip.kotlinandroidtalks.presentation.BillNotePresenter
-import com.babic.filip.kotlinandroidtalks.presentation.NotesPresenter
-import com.babic.filip.kotlinandroidtalks.presentation.RegularNotePresenter
-import com.babic.filip.kotlinandroidtalks.presentation.WorkNotePresenter
+import com.babic.filip.kotlinandroidtalks.presentation.*
 import com.babic.filip.kotlinandroidtalks.ui.note_input.bills.BillsNoteInterface
 import com.babic.filip.kotlinandroidtalks.ui.note_input.regular.RegularNoteInterface
+import com.babic.filip.kotlinandroidtalks.ui.note_input.shopping.ShoppingNoteInterface
 import com.babic.filip.kotlinandroidtalks.ui.note_input.work.WorkNoteInterface
 import com.babic.filip.kotlinandroidtalks.ui.notes.NoteInterface
 import dagger.Module
@@ -27,4 +25,6 @@ class PresentationModule {
     @Provides fun provideWorkNotePresenter(databaseManager: DatabaseManager, firebaseManager: FirebaseManager): WorkNoteInterface.Presenter = WorkNotePresenter(databaseManager, firebaseManager)
 
     @Provides fun provideBillNotePresenter(databaseManager: DatabaseManager, firebaseManager: FirebaseManager): BillsNoteInterface.Presenter = BillNotePresenter(databaseManager, firebaseManager)
+
+    @Provides fun provideShoppingNotePresenter(databaseManager: DatabaseManager, firebaseManager: FirebaseManager): ShoppingNoteInterface.Presenter = ShoppingNotePresenter(databaseManager, firebaseManager)
 }
