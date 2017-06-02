@@ -44,7 +44,9 @@ class FirebaseManagerImpl(private val database: FirebaseDatabase) : FirebaseMana
     override fun updateNote(note: Note, completion: (Boolean, Note) -> Unit) {
         val reference = database.reference.child(note.id)
 
-        reference.setValue(note).addOnCompleteListener { completion(it.isSuccessful, note) }
+        val noteToUpdate = note.toFirebaseNote()
+
+        reference.setValue(noteToUpdate).addOnCompleteListener { completion(it.isSuccessful, note) }
     }
 
     override fun deleteNote(id: String, completion: (Boolean, String) -> Unit) {

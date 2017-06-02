@@ -52,7 +52,11 @@ abstract class BaseNoteInputPresenter<T : NoteInputInterface.View>(protected val
 
                 is Category.None -> validBody
 
-                is Category.Shopping -> with(noteInput) { validBody && category.items.isValid() }
+                is Category.Shopping -> with(noteInput) {
+                    val items = category.items
+
+                    validBody && items.isValid() && items.isNotEmpty()
+                }
 
                 is Category.Bills -> with(noteInput) { validBody && category.amount > 0 && category.deadline.isValid() }
             }

@@ -22,6 +22,8 @@
     <item name="shoppingInput" type="id" />
     <item name="noteFilter" type="id" />
     <item name="filterAction" type="id" />
+    <item name="shoppingList" type="id" />
+    <item name="shoppingItems" type="id" />
 
     <item name="billInput" type="id" />
     <item name="deadlineInput" type="id" />

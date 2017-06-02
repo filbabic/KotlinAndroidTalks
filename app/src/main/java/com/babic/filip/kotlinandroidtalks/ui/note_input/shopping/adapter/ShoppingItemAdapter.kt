@@ -15,7 +15,7 @@ class ShoppingItemAdapter : FlexibleAdapter<FlexibleShoppingHolder>() {
     fun getShoppingItems() = flexibleItems.map { it.getShoppingItem() }.filter { it.isValid() }
 
     fun addShoppingItem() = with(flexibleItems) {
-        val insertIndex = lastIndex - 1
+        val insertIndex = lastIndex
         add(insertIndex, ShoppingItemHolder(ShoppingItem()))
 
         notifyItemInserted(insertIndex)
